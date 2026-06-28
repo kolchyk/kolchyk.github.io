@@ -1,0 +1,13 @@
+{
+  "name": "cv-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Single-file editorial CV site for Serhii Kolchyk",
+  "scripts": {
+    "build:pdf": "node scripts/build-cv-pdf.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}

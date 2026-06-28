@@ -1,0 +1,10 @@
+# Internal / planning
+docs/
+concept.md
+CLAUDE.md
+
+# Dependencies (installed via npm install)
+node_modules/
+
+# OS
+.DS_Store
