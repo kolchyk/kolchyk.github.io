@@ -22,7 +22,7 @@ scripts/build-cv-pdf.mjs ← генератор PDF (npm run build:pdf)
 
 - **Теми** — світла/темна, вибір у `localStorage`, за замовчуванням системна (`prefers-color-scheme`). Уся палітра на CSS-змінних.
 - **Дві мови** — миттєвий перемикач EN ⇄ друга мова (зараз українська). Англійська — джерело правди з розмітки; переклади лежать в одному JS-обʼєкті за ключами `data-i18n`. Перемикач також змінює `<title>`, meta, Open Graph і `<html lang>`. Вибір запамʼятовується, перша мова — з `navigator.language`.
-- **Навігація** — липка шапка з якорями, scrollspy, мобільне меню, смужка прогресу прокрутки.
+- **Навігація** — липка шапка з якорями, scrollspy, смужка прогресу прокрутки.
 - **Контент** — герой-секція з фактами і портретом (або монограмою), анімована статистика, картки «як я працюю», таймлайн досвіду з фільтрами за категоріями, навички, освіта, шкали мов, контакти.
 - **Анімації** — reveal при прокрутці, лічильники, шкали мов; усі вимикаються за `prefers-reduced-motion`.
 - **Резюме-PDF** — окремий друкований макет (`@media print`, не скриншот). Кнопка одразу завантажує готовий PDF із `assets/` активною мовою (`kolchyk-cv-en.pdf` / `kolchyk-cv-uk.pdf`). PDF генеруються з тієї ж верстки через `npm run build:pdf` — **після зміни контенту їх треба перегенерувати**. Тримаються в межах 2 сторінок (3 пункти на роль, 5 — для `flagship`).
@@ -55,7 +55,7 @@ DESIGN LANGUAGE
 - Motion is tasteful and purposeful, never distracting: reveal-on-scroll, a thin scroll-progress bar, count-up stats.
 
 REQUIRED SECTIONS (in this order)
-1. Sticky top bar: name/monogram, in-page nav links, a language toggle, and a dark-mode toggle. Collapses to a hamburger menu on mobile.
+1. Sticky top bar: name/monogram, in-page nav links, a language toggle, and a dark-mode toggle.
 2. Hero: name, role/title, a one-paragraph summary with key phrases bolded, a few "fact" chips (location, languages, years of experience), primary "Get in touch" + "Download CV" buttons, and a portrait (with a styled monogram as the fallback if no photo).
 3. Stats strip: 4–6 headline numbers that animate (count up) when scrolled into view.
 4. "How I work": 3–4 short principle cards.
@@ -69,7 +69,7 @@ KEY FEATURES (implement all)
 - Dark/light theme toggle persisted in localStorage, defaulting to the system preference.
 - Internationalization with NO duplicated source language: mark translatable elements with `data-i18n="key"`, read the default language straight from the DOM, and keep ONLY the second language's strings in a small JS object keyed by the same keys. The toggle also swaps `<title>` and meta/Open Graph tags and updates `<html lang>`. Persist the choice and auto-detect from `navigator.language`.
 - A DEDICATED print/PDF résumé that is hidden on screen and revealed only in `@media print`: a compact, typeset 1–2 page CV (NOT a screenshot of the live page). The "Download CV" button just calls `window.print()`. The print layout should reuse the same i18n keys so it prints in the active language, and it must force the light palette and exact-color printing. Before printing, lock any animated numbers to their final values.
-- Vanilla-JS interactions only, using IntersectionObserver where possible: reveal-on-scroll, count-up stats, filling language bars, scroll-progress bar, scrollspy that highlights the active nav link, the experience filters, the mobile menu, and the theme/language toggles.
+- Vanilla-JS interactions only, using IntersectionObserver where possible: reveal-on-scroll, count-up stats, filling language bars, scroll-progress bar, scrollspy that highlights the active nav link, the experience filters, and the theme/language toggles.
 - A favicon as an inline SVG data-URI showing my initials in the accent color.
 - Helpful `<title>`, meta description, and Open Graph tags.
 
@@ -90,10 +90,10 @@ YOUR DETAILS  (fill these in — if something is missing, ask me; otherwise use 
 - Photo: yes/no (if no, use a monogram of my initials):
 
 QUALITY BAR (verify before you hand it over)
-- Every control works with no console errors: theme toggle, language toggle, filter chips, mobile menu, and the Download CV button.
+- Every control works with no console errors: theme toggle, language toggle, filter chips, and the Download CV button.
 - Switching language swaps every visible string AND the `<title>` / meta tags — nothing snaps back to the source language.
 - Print preview shows a clean 1–2 page CV in the active language, forced to the light palette, with the stat numbers at their final values (not 0).
-- At 360px wide nothing overflows horizontally and the nav collapses to a menu.
+- At 360px wide nothing overflows horizontally.
 - With `prefers-reduced-motion` enabled, animations are disabled rather than broken.
 - No leftover lorem/placeholder text except where I deliberately left a field blank.
 

@@ -2,7 +2,7 @@
 //
 // Drives index.html with headless Google Chrome (same engine/channel as the PDF
 // builder) and verifies every interactive feature from the README: themes, i18n,
-// experience filters, mobile menu, count-up stats, language bars, the dedicated
+// experience filters, count-up stats, language bars, the dedicated
 // print CV, responsiveness and accessibility basics.
 //
 // Zero new dependencies: Node's built-in test runner + playwright-core + the
@@ -154,20 +154,6 @@ test('experience filters show/hide roles by category', async () => {
 
     await page.click('.chip[data-f="all"]');
     assert.equal(await page.locator('.job:not(.hide)').count(), total, '"All" restores every role');
-  } finally { await ctx.close(); }
-});
-
-// ----- mobile menu -----
-
-test('mobile hamburger menu opens and closes', async () => {
-  const { ctx, page } = await open({ context: { viewport: { width: 390, height: 800 } } });
-  try {
-    assert.equal(await page.getAttribute('#menuBtn', 'aria-expanded'), 'false');
-    await page.click('#menuBtn');
-    assert.equal(await page.getAttribute('#menuBtn', 'aria-expanded'), 'true');
-    assert.equal(await page.locator('#nav.open').count(), 1, 'nav opened');
-    await page.click('#nav a[href="#skills"]');
-    assert.equal(await page.getAttribute('#menuBtn', 'aria-expanded'), 'false', 'closes after picking a link');
   } finally { await ctx.close(); }
 });
 
