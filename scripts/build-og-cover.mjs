@@ -53,7 +53,7 @@ const html = `<!doctype html><html lang="en"><head><meta charset="utf-8">
     <div class="left">
       <div class="eyebrow">Data · BI · AI · Governance</div>
       <div class="name">Serhii Kolchyk</div>
-      <div class="role">Chief Data &amp; Innovation Officer</div>
+      <div class="role">Head of Data &amp; Innovation</div>
       <div class="org">Naftogaz of Ukraine</div>
       <div class="rule"></div>
       <div class="facts">12+ years · single source of truth · BI platforms · AI</div>
